@@ -1,4 +1,6 @@
-# What is missing for PROD
+# Task Assignment App Redme
+
+## What is missing for PROD
 
 ### Implementation
 When data for prices is fetched from IEX and stored to database key is a combination of company **symbol** and **lastUpdate** timestamp. It was the easiest way to ensure record are not duplicated.
