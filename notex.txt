@@ -1,0 +1,33 @@
+logo: https://cloud.iexapis.com/stable/stock/aapl/logo?token=pk_43f21d15ea854cfa993c1276b55753c6
+price: https://cloud.iexapis.com/stable/stock/aapl/price?token=pk_43f21d15ea854cfa993c1276b55753c6
+quote: https://cloud.iexapis.com/stable/stock/aapl/quote?token=pk_43f21d15ea854cfa993c1276b55753c6
+
+minikube start
+kubectl config use-context minikube
+docker pull mysql
+eval $(minikube docker-env)
+
+kubectl run task-assignment --image=task-assignment:v1.0 --port=8080 --image-pull-policy=Never
+
+
+docker pull nikpetrovic/task-assignment:v1.0
+docker pull mysql/mysql-server
+
+docker run --name=mysql1 -e MYSQL_ROOT_HOST=% -p 3306:13306 -d mysql/mysql-server
+docker logs mysql1 2>&1 | grep GENERATED
+docker exec -it mysql1 mysql -u root -p
+ALTER USER 'root'@'localhost' IDENTIFIED BY root
+CREATE USER 'task'@'localhost' IDENTIFIED BY 'T@skT@sk';
+CREATE DATABASE task;
+USE task;
+GRANT ALL PRIVILEGES ON task TO 'task'@'localhost’;
+
+
+docker pull nikpetrovic/mysql-task-assignment
+kubectl run mysql --image=nikpetrovic/mysql-task-assignment:v1.0 --port=3306
+kubectl run task-assignment --image=nikpetrovic/task-assignment:v1.0 --port=8080
+
+
+docker run --name=mysql -e MYSQL_ROOT_HOST=% -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=task -p 3306:13306 -d mysql/mysql-server
+
+kubectl run mysql --image=mysql/mysql-server --port=3306 --env MYSQL_ROOT_HOST=% --env MYSQL_ROOT_PASSWORD=root --env MYSQL_DATABASE=task

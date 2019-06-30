@@ -1,2 +1,0 @@
-logo: https://cloud.iexapis.com/stable/stock/aapl/logo?token=pk_43f21d15ea854cfa993c1276b55753c6
-price: https://cloud.iexapis.com/stable/stock/aapl/price?token=pk_43f21d15ea854cfa993c1276b55753c6
