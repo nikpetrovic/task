@@ -22,7 +22,7 @@ Before you run the app locally you should provide:
 
 Now you have MySql IP and port so you can execute the following command in order to run the app:
  
-`MYSQL_SERVICE_HOST=localhost MYSQL_SERVICE_PORT=3306 ./gradlew bootRun`
+`MYSQL_SERVICE_HOST=<MySQL-IP> MYSQL_SERVICE_PORT=<MySQL-PORT> ./gradlew bootRun`
 
 ##Run in minikube
 
